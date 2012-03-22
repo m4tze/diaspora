@@ -20,7 +20,7 @@ var app = {
 
   baseImageUrl: function(baseUrl){
     if(baseUrl) { return this._baseImageUrl = baseUrl }
-    return this._baseImageUrl || ""
+    return this._baseImageUrl || "assets/"
   },
 
   initialize: function() {
