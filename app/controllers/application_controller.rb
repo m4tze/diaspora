@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   has_mobile_fu
   protect_from_forgery :except => :receive
 
-  # before_filter :ensure_http_referer_is_set
+  before_filter :ensure_http_referer_is_set
   before_filter :set_locale
   before_filter :set_git_header if (AppConfig[:git_update] && AppConfig[:git_revision])
   before_filter :set_grammatical_gender
@@ -21,9 +21,9 @@ class ApplicationController < ActionController::Base
                 :tags,
                 :open_publisher
 
-  # def ensure_http_referer_is_set
-  #   request.env['HTTP_REFERER'] ||= root_path
-  # end
+  def ensure_http_referer_is_set
+     request.env['HTTP_REFERER'] ||= '/'
+  end
 
   # Overwriting the sign_out redirect path method
   def after_sign_out_path_for(resource_or_scope)
