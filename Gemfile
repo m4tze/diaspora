@@ -73,6 +73,9 @@ gem 'acts_as_api'
 gem 'i18n-inflector-rails', '~> 1.0'
 gem 'rails-i18n'
 
+#admin
+gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
+
 # parsing
 
 gem 'nokogiri', '1.5.0'
