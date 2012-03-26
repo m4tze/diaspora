@@ -1,3 +1,5 @@
+@import "bootstrap-extensions";
+
 /* variables */
 $light-grey: #999;
 $pane-width: 420px;
@@ -103,19 +105,6 @@ $pane-width: 420px;
   line-height: 2em;
   padding-bottom: 0;
   margin-bottom: 0;
-}
-
-/* bootstrap extentions */
-.icon-red {
-  background-image: url("/img/glyphicons-halflings-red.png");
-}
-
-.icon-green {
-  background-image: url("/img/glyphicons-halflings-green.png");
-}
-
-.icon-blue {
-  background-image: url("/img/glyphicons-halflings-blue.png");
 }
 
 /* styles */

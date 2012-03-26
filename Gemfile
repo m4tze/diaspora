@@ -109,6 +109,7 @@ gem 'client_side_validations'
 
 group :assets do
   gem 'sass-rails', '3.1.4'
+  gem 'bootstrap-sass', '~> 2.0.1'
   gem 'handlebars_assets'
   gem 'uglifier'
 end

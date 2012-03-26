@@ -1,4 +1,5 @@
-.twipsy {
+/*
+.tooltip {
   display: block;
   position: absolute;
   visibility: visible;
@@ -10,13 +11,13 @@
   -moz-opacity: 0.8;
   opacity: 0.8;
 }
-.twipsy.fade.in {
+.tooltip.fade.in {
   filter: alpha(opacity=80);
   -khtml-opacity: 0.8;
   -moz-opacity: 0.8;
   opacity: 0.8;
 }
-.twipsy.above .twipsy-arrow {
+.tooltip-above .tooltip-arrow {
   bottom: 0;
   left: 50%;
   margin-left: -5px;
@@ -24,7 +25,7 @@
   border-right: 5px solid transparent;
   border-top: 5px solid #000000;
 }
-.twipsy.left .twipsy-arrow {
+.tooltip-left .tooltip-arrow {
   top: 50%;
   right: 0;
   margin-top: -5px;
@@ -32,7 +33,7 @@
   border-bottom: 5px solid transparent;
   border-left: 5px solid #000000;
 }
-.twipsy.below .twipsy-arrow {
+.tooltip-below .twipsy-arrow {
   top: 0;
   left: 50%;
   margin-left: -5px;

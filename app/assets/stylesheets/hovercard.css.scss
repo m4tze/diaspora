@@ -1,4 +1,4 @@
-@import "_mixins.css.scss";
+@import "mixins";
 
 #hovercard {
   @include border-radius(2px);
