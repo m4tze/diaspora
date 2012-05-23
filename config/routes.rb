@@ -3,8 +3,13 @@
 #   the COPYRIGHT file.
 
 Diaspora::Application.routes.draw do
-  mount RailsAdmin::Engine => '/admin_panel', :as => 'rails_admin'
+  if Rails.env.production?
+    mount RailsAdmin::Engine => '/admin_panel', :as => 'rails_admin'
+  end
 
+
+  get "/atom.xml" => redirect('http://blog.diasporafoundation.org/feed/atom') #too many stupid redirects :()
+  
   get 'oembed' => 'posts#oembed', :as => 'oembed'
   # Posting and Reading
   resources :reshares
@@ -12,7 +17,13 @@ Diaspora::Application.routes.draw do
   resources :status_messages, :only => [:new, :create]
 
   resources :posts do
-    resources :likes, :only => [:create, :destroy, :index]
+    member do
+      get :next
+      get :previous
+      get :interactions
+    end
+
+    resources :likes, :only => [:create, :destroy, :index ]
     resources :participations, :only => [:create, :destroy, :index]
     resources :comments, :only => [:new, :create, :destroy, :index]
   end
@@ -45,10 +56,13 @@ Diaspora::Application.routes.draw do
   end
 
   get 'bookmarklet' => 'status_messages#bookmarklet'
+  get 'new_bookmarklet' => 'status_messages#new_bookmarklet'
 
   resources :photos, :except => [:index] do
     put :make_profile_photo
   end
+
+  post "upload_wallpaper" => 'profiles#upload_wallpaper_image'
 
   # ActivityStreams routes
   scope "/activity_streams", :module => "activity_streams", :as => "activity_streams" do

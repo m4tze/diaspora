@@ -50,6 +50,8 @@ fr:
       weekly_user_stats: "Statistiques hebdomadaires"
     correlations:
       correlations_count: "Corrélations avec le nombre d'inscrits :"
+    stats:
+      go: "exécuter"
     user_search:
       add_invites: "ajouter des invitations"
       email_to: "Adresse e-mail de la personne à inviter"
@@ -202,9 +204,8 @@ fr:
       success: "Voyons ce qu'ils ont à dire ! #sayhello"
   bookmarklet:
     explanation: "Publiez sur Diaspora depuis n'importe où en ajoutant %{link} à vos marque-pages."
-    explanation_link_text: "ce lien"
     heading: "Bookmarklet"
-    post_something: "Publiez quelque chose sur Diaspora"
+    post_something: "Publiez sur Diaspora"
     post_success: "Publié ! Fermeture !"
   cancel: "Annuler"
   comments:
@@ -293,20 +294,6 @@ fr:
   fill_me_out: "Remplissez-moi"
   find_people: "Rechercher des personnes ou des #tags"
   hide: "Masquer"
-  home:
-    show:
-      already_account: "vous avez déjà un compte?"
-      choice: "Choix"
-      choice_explanation: "Diaspora vous laisse trier vos connexions dans des groupes appelés aspects. Spécifiques à Diaspora, les aspects garantissent que vos photos, histoires et blagues ne sont partagées qu'avec les personnes avec qui vous souhaitez les partager."
-      learn_about_host: "Apprenez comment héberger votre propre serveur Diaspora."
-      login_here: "connectez-vous ici"
-      ownership: "Propriété"
-      ownership_explanation: "Vous êtes le propriétaire de vos images, et vous ne devriez pas être obligé de renoncer à cela juste pour les partager. Vous conservez la propriété de tout ce que vous partagez sur Diaspora, ce qui vous donne le contrôle total de la manière dont cela est distribué."
-      share_what_you_want: "Partagez ce que vous voulez, avec qui vous voulez."
-      simplicity: "Simplicité"
-      simplicity_explanation: "Diaspora rend le partage propre et facile - et cela est également valable pour la vie privée. Intrinsèquement privé, Diaspora ne vous contraint pas à vous frayer un chemin à travers des pages de configuration et d'options uniquement pour maintenir votre profil sécurisé."
-      tagline_first_half: "Partagez ce que vous voulez,"
-      tagline_second_half: "avec qui vous voudrez."
   invitation_codes:
     excited: "%{name} est content de vous voir ici."
   invitations:
@@ -690,13 +677,20 @@ fr:
       update: "Mettre à jour"
     invalid_invite: "Le lien d'invitation que vous avez fourni n'est plus valide !"
     new:
+      continue: "CONTINUER"
       create_my_account: "Créer mon compte !"
+      diaspora: "<3 Diaspora*"
+      email: "EMAIL"
       enter_email: "Saisissez une adresse de courrier électronique"
-      enter_password: "Saisissez un mot de passe"
+      enter_password: "Saisissez un mot de passe (d'au moins six caractères)"
       enter_password_again: "Saisissez à nouveau le même mot de passe"
       enter_username: "Choisissez un nom d'utilisateur (uniquement des lettres, chiffres et caractères de soulignement)"
+      hey_make: "HE !<br/>FAITES<br/>QUELQUE CHOSE."
       join_the_movement: "Rejoignez le mouvement !"
+      password: "MOT DE PASSE"
+      sign_up: "INSCRIVEZ-VOUS"
       sign_up_message: "Le réseau social avec un ♥"
+      username: "NOM D'UTILISATEUR"
   requests:
     create:
       sending: "En cours d'envoi"
@@ -1000,12 +994,6 @@ fr:
       what_are_you_in_to: "Qu'aimez-vous faire ?"
       what_facebook_does: "à Diaspora*. Ça permettra d'importer votre nom et votre photo, et aussi d'y publier vos messages."
       who_are_you: "Qui êtes-vous ?"
-    logged_out:
-      go_mobile: "Maintenant sur mobiles."
-      on_your_mobile_device: "sur votre mobile pour accéder à Diaspora*."
-      signed_out: "Vous vous êtes déconnecté de Diaspora*"
-      simply_visit: "Il suffit de visiter"
-      works_on_modern: "Fonctionne sur tous les smartphones modernes"
     privacy_settings:
       ignored_users: "Utilisateurs ignorés"
       stop_ignoring: "Arrêter d'ignorer"

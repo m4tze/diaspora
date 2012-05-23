@@ -73,7 +73,7 @@ es-MX:
         click_to_unlock: "Haz click en siguiente enlace para desbloquear tu cuenta:"
         subject: "Instrucciones de desbloqueo"
         unlock: "Desbloquear mi cuenta"
-      welcome: "¡Bienvenido %{email}!"
+      welcome: "¡Bienvenido/a %{email}!"
     passwords:
       edit:
         change_password: "Cambiar mi contraseña"

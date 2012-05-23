@@ -2,16 +2,13 @@
 //= require ../collections/photos
 app.models.Stream = Backbone.Collection.extend({
   initialize : function(models, options){
-    var collection = app.collections.Posts;
-    if( options && options.collection ) collection = options.collection;
-    this.items = new collection([], this.collectionOptions());
+    var collectionClass = options && options.collection || app.collections.Posts;
+    this.items = new collectionClass([], this.collectionOptions());
   },
 
   collectionOptions :function(){
       var order = this.sortOrder();
-      return {
-          comparator : function(item) { return -item[order](); }
-      }
+      return { comparator : function(item) { return -item[order](); } }
   },
 
   url : function(){
@@ -62,19 +59,11 @@ app.models.Stream = Backbone.Collection.extend({
   },
 
   preloadOrFetch : function(){ //hai, plz test me THNX
-    this.preload()
-    if(this.items.length == 0) {
-      this.fetch()
-    }
+    return $.when(app.hasPreload("stream") ? this.preload() : this.fetch())
   },
 
   preload : function(){
-    var preloadJson = window.preLoadContent && JSON.parse(window.preLoadContent)
-    delete window.preLoadContent // always do this just to be safe in preventing dirty state across navigates
-
-    if(preloadJson) {
-      this.items.reset(preloadJson)
-      this.trigger("fetched")
-    }
+    this.items.reset(app.parsePreload("stream"))
+    this.trigger("fetched")
   }
 });

@@ -38,6 +38,7 @@ hu:
       preparing_your_stream: "Személyre szabott hírfolyamod előkészítése..."
     header:
       admin: "Adminisztráció"
+      close: "bezárás"
       contacts: "Ismerősök"
       home: "Kezdőlap"
       log_out: "Kijelentkezés"
@@ -127,6 +128,7 @@ hu:
     viewer:
       comment: "Hozzászólás"
       follow_post: "Követem"
+      home: "KEZDŐLAP"
       like: "Tetszik"
       reshare: "Megosztás"
       reshared: "Megosztva"

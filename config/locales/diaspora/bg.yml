@@ -172,7 +172,6 @@ bg:
       success: "Какво ли ще кажат! #sayhello"
   bookmarklet:
     explanation: "Публикувайте в Diaspora от където и да е, запаметявайки %{link} като отметка."
-    explanation_link_text: "тази връзка"
     post_something: "Публикуване в Diaspora"
     post_success: "Публикувано!"
   cancel: "Отказ"
@@ -260,20 +259,6 @@ bg:
   fill_me_out: "Попълнете ме"
   find_people: "Намерете хора или #марки"
   hide: "Скриване"
-  home:
-    show:
-      already_account: "вече имате акаунт?"
-      choice: "Избор"
-      choice_explanation: "Diaspora предоставя възможност за сортиране на контактите в групи, наречени аспекти. Уникални за Diaspora, те позволяват споделянето на снимки, истории и шеги само с хората, за които са предвидени.\n"
-      learn_about_host: "Научете как да стартирате Diaspora на собствен сървър."
-      login_here: "впишете се от тук"
-      ownership: "Собственост"
-      ownership_explanation: "Вие притежавате снимките си и не е необходимо да се отказвате от това си право само за да ги споделите. Запазвате собственост върху всичко, което споделяте в Diaspora и контролирате разпространението."
-      share_what_you_want: "Споделяйте каквото желаете, с когото пожелаете."
-      simplicity: "Леснота"
-      simplicity_explanation: "Споделянето чрез Diaspora е просто и лесно. Характерно за Diaspora е, че запазва личния ви живот поверителен без нужда от настройване на различни страници с безброй опции."
-      tagline_first_half: "Споделете каквото желаете,"
-      tagline_second_half: "с когото пожелаете."
   invitations:
     a_facebook_user: "Потребител на Facebook"
     check_token:
@@ -912,12 +897,6 @@ bg:
       what_are_you_in_to: "От какво се интересувате?"
       what_facebook_does: "с Diaspora. Така някои данни (име и снимка) ще бъдат попълнени автоматично и ще можете да публикувате съобщения във Facebook от Diaspora."
       who_are_you: "Кой сте вие?"
-    logged_out:
-      go_mobile: "Пробвайте и версията за мобилни устройства."
-      on_your_mobile_device: "от вашето мобилно устройство за достъп до мобилната версия на Diaspora*."
-      signed_out: "Отписахте се от Diaspora*"
-      simply_visit: "Просто посетете"
-      works_on_modern: "Съвместима е с всеки съвременен смартфон"
     privacy_settings:
       ignored_users: "Игнорирани потребители"
       stop_ignoring: "Прекратяване на игнорирането"

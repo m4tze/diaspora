@@ -42,13 +42,31 @@ var app = {
     Backbone.history.start({pushState: true});
 
     // there's probably a better way to do this...
-    $("a[rel=backbone]").bind("click", function(evt){
+    $("a[rel=backbone]").live("click", function(evt){
       evt.preventDefault();
       var link = $(this);
 
       $(".stream_title").text(link.text())
       app.router.navigate(link.attr("href").substring(1) ,true)
     })
+  },
+
+  hasPreload : function(prop) {
+    return !!(window.preloads && window.preloads[prop]) //returning boolean variable so that parsePreloads, which cleans up properly is used instead
+  },
+
+  setPreload : function(prop, val) {
+    window.preloads = window.preloads || {}
+    window.preloads[prop] = val
+  },
+
+  parsePreload : function(prop){
+      if(!app.hasPreload(prop)) { return }
+
+      var preload = window.preloads[prop]
+      delete window.preloads[prop] //prevent dirty state across navigates
+
+      return(preload)
   }
 };
 

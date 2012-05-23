@@ -2,6 +2,9 @@
 @import 'new_styles/new_mixins';
 @import 'new_styles/variables';
 
+/* core */
+@import 'new_styles/flash_messages';
+
 /* custom animations */
 @import 'new_styles/animations';
 
@@ -21,5 +24,13 @@
 
 /* isotope */
 @import 'new_styles/isotope_transitions';
+
+/* login */
+@import 'new_styles/login';
+@import 'new_styles/registration';
+@import 'new_styles/landing';
+
+@import 'new_styles/forms';
+
 
 @include video-overlay();

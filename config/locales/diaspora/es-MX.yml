@@ -5,7 +5,7 @@
 
 
 es-MX:
-  _applications: "Solicitudes"
+  _applications: "Aplicaciones"
   _comments: "Comentarios"
   _contacts: "Contactos"
   _home: "Inicio"
@@ -50,6 +50,8 @@ es-MX:
       weekly_user_stats: "Estadísticas semanales de usuario"
     correlations:
       correlations_count: "Correlaciones con el conteo de inicio de sesión:"
+    stats:
+      go: "ir"
     user_search:
       add_invites: "añadir invitaciones"
       email_to: "Mandar invitación por correo electrónico a"
@@ -123,7 +125,7 @@ es-MX:
       donate: "Donar"
       handle_explanation: "Esta es tu dirección de Diaspora. Como una dirección de correo electrónico, puedes dársela a la gente para que te encuentre."
       help:
-        do_you: "Tal vez:"
+        do_you: "¿Tal vez:"
         email_feedback: "Si lo prefieres, envíanos tus opiniones a este %{link}."
         feature_suggestion: "… sugieres una %{link}?"
         find_a_bug: "… encontraste un %{link}?"
@@ -149,7 +151,7 @@ es-MX:
         content: "Puedes conectar los siguientes servicios a Diaspora:"
         heading: "Conectar servicios"
       unfollow_tag: "Dejar de seguir #%{tag}"
-      welcome_to_diaspora: "¡Bienvenido a Diaspora, %{name}!"
+      welcome_to_diaspora: "¡Bienvenido/a a Diaspora, %{name}!"
     many: "%{count} aspectos"
     move_contact:
       error: "Error al mover el contacto: %{inspect}"
@@ -201,10 +203,9 @@ es-MX:
       failure: "No pude dejar de ignorar a ese usuario. #evasion"
       success: "¡Veamos qué tienes que decir! #sayhello"
   bookmarklet:
-    explanation: "Publica en Diaspora desde donde quieras, agregando a tus marcadores %{link}."
-    explanation_link_text: "este enlace"
+    explanation: "Publica en Diaspora desde cualquier lugar, agregando a tus marcadores este enlace => %{link}."
     heading: "Marcador"
-    post_something: "Publica algo en Diaspora"
+    post_something: "Publica en Diaspora"
     post_success: "¡Publicado! ¡Cerrando!"
   cancel: "Cancelar"
   comments:
@@ -290,20 +291,6 @@ es-MX:
   fill_me_out: "Complétame"
   find_people: "Encuentra gente o #etiquetas"
   hide: "Ocultar"
-  home:
-    show:
-      already_account: "¿Ya tienes una cuenta?"
-      choice: "Elección"
-      choice_explanation: "Diaspora te permite organizar tus conexiones dentro de grupos llamados aspectos. Algo único en Diaspora, los aspectos aseguran que tus fotos, historias y bromas sean compartidas solamente con la gente que tú quieras."
-      learn_about_host: "Aprende cómo hospedar tu propio servidor de Diaspora."
-      login_here: "Inicia sesión aquí"
-      ownership: "Propiedad"
-      ownership_explanation: "Eres dueño de tus propias imágenes, y no tendrías porqué renunciar a eso solo para compartirlas. En Diaspora mantienes la propiedad de todo lo que compartes, dándote total control acerca de cómo se distribuye."
-      share_what_you_want: "Comparte lo que quieras, con quien tú quieras."
-      simplicity: "Simplicidad"
-      simplicity_explanation: "Diaspora hace que compartir sea fácil y transparente – y esto incluye la privacidad también. Siendo intrínsecamente privada, Diaspora no te hace navegar a lo largo de páginas de configuración y opciones solo para mantener tu perfil seguro."
-      tagline_first_half: "Comparte lo que quieras,"
-      tagline_second_half: "con quien tú quieras."
   invitation_codes:
     excited: "%{name} está entusiasmado por verte aquí."
   invitations:
@@ -332,7 +319,7 @@ es-MX:
       if_they_accept_info: "si aceptan, serán añadidos al aspecto al cual los invitaste."
       invite_someone_to_join: "¡Invita a alguien a unirse a Diaspora!"
       language: "Idioma"
-      paste_link: "Comparte este enlace con tus amigos para invitarlos a Diaspora*, o envíales directamente el enlace por correo electrónico"
+      paste_link: "Comparte este enlace con tus amigos para invitarlos a Diaspora*, o envíales directamente el enlace por correo electrónico."
       personal_message: "Mensaje personal"
       resend: "Reenviar"
       send_an_invitation: "Enviar una invitación"
@@ -456,9 +443,11 @@ es-MX:
           %{invite_url}
 
 
-          Saludos,
+          Saludos.
 
           ¡El generador de correo automático de Diaspora*!
+
+          [1]: %{invite_url}
     invited_you: "%{name} te ha invitado a Diaspora*"
     liked:
       liked: "A %{name} le gustó tu publicación"
@@ -634,13 +623,20 @@ es-MX:
       update: "Actualizar"
     invalid_invite: "¡El enlace de invitación que proporcionaste ya no es válido!"
     new:
+      continue: "Continuar"
       create_my_account: "¡Crear mi cuenta!"
+      diaspora: "<3 Diaspora*"
+      email: "CORREO ELECTRÓNICO"
       enter_email: "Ingresa un correo electrónico"
-      enter_password: "Elige una contraseña"
+      enter_password: "Elige una contraseña (mínimo seis caracteres)"
       enter_password_again: "Ingresa de nuevo la misma contraseña"
       enter_username: "Elige un nombre de usuario (solo letras, números o guiones bajos)"
+      hey_make: "¡EY! , <br/> HAZ <br/> ALGO."
       join_the_movement: "¡Únete al movimiento!"
+      password: "CONTRASEÑA"
+      sign_up: "REGISTRARSE"
       sign_up_message: "Redes sociales con un ♥"
+      username: "NOMBRE DE USUARIO"
   requests:
     create:
       sending: "Enviando"
@@ -684,9 +680,9 @@ es-MX:
     failure:
       error: "hubo un error al conectarse a ese servicio"
     finder:
-      fetching_contacts: "Diaspora esta importando a tus amigos de %{service}, por favor vuelve en unos minutos."
-      no_friends: "No se encontraron amigos de Facebook."
-      service_friends: "Amigos de %{service}"
+      fetching_contacts: "Diaspora está importando a tus contactos de %{service}, por favor vuelve en unos minutos."
+      no_friends: "No se encontraron contactos de Facebook."
+      service_friends: "Contactos de %{service}"
     index:
       connect_to_facebook: "Conectar a Facebook"
       connect_to_tumblr: "Conectar a Tumblr"
@@ -929,12 +925,6 @@ es-MX:
       what_are_you_in_to: "¿Qué te gusta hacer?"
       what_facebook_does: "a Diaspora. Esto mostrará tu nombre y tu foto, y permitirá publicaciones-cruzadas."
       who_are_you: "¿Quién eres?"
-    logged_out:
-      go_mobile: "Ahora desde tu celular."
-      on_your_mobile_device: "desde tu dispositivo móvil para acceder a Diaspora* móvil."
-      signed_out: "Has salido de Diaspora*"
-      simply_visit: "Simplemente visita"
-      works_on_modern: "Funciona en todos los smartphones modernos"
     privacy_settings:
       ignored_users: "Usuarios ignorados"
       stop_ignoring: "Dejar de ignorar"
@@ -959,7 +949,7 @@ es-MX:
     no_person_constructed: "No se pudo crear ninguna persona a partir de esta hcard."
     not_enabled: "parece que webfinger no está habilitado para el servidor de %{account}"
     xrd_fetch_failed: "hubo un error al obtener el xrd de la cuenta %{account}"
-  welcome: "¡Bienvenido!"
+  welcome: "¡Bienvenido/a!"
   will_paginate:
     next_label: "siguiente »"
     previous_label: "« anterior"

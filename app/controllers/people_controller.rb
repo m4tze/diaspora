@@ -81,20 +81,17 @@ class PeopleController < ApplicationController
 
   def show
     @person = Person.find_from_guid_or_username(params)
-    flag = FeatureFlagger.new(current_user, @person)
-    logger.info(request.format)
 
     raise(ActiveRecord::RecordNotFound) if remote_profile_with_no_user_session?
     return redirect_to :back, :notice => t("people.show.closed_account") if @person.closed_account?
-    return redirect_to person_path(@person) if params[:ex] && !flag.new_profile?
-    return redirect_to person_path(@person, :ex => true) if !params[:ex] && flag.new_profile? && flag.new_hotness? && request.format == "text/html"
+    return redirect_to person_path(@person) if cant_experimental
+    return redirect_to person_path(@person, :ex => true) if needs_experimental
 
     @post_type = :all
     @aspect = :profile
     @share_with = (params[:share_with] == 'true')
 
-    @stream = Stream::Person.new(current_user, @person,
-                                 :max_time => max_time)
+    @stream = Stream::Person.new(current_user, @person, :max_time => max_time)
 
     @profile = @person.profile
 
@@ -121,12 +118,16 @@ class PeopleController < ApplicationController
       format.all do
         if params[:ex]
           @page = :experimental
-          render :text => @stream.stream_posts.as_api_response(:backbone).to_json, :layout => 'post'
+          gon.person = PersonPresenter.new(@person, current_user)
+          gon.stream = PostPresenter.collection_json(@stream.stream_posts, current_user)
+
+          render :nothing => true, :layout => 'post'
         else
           respond_with @person, :locals => {:post_type => :all}
         end
       end
-      format.json{ render_for_api :backbone, :json => @stream.stream_posts, :root => :posts }
+
+      format.json { render :json => @stream.stream_posts.map { |p| LastThreeCommentsDecorator.new(PostPresenter.new(p, current_user)) }}
     end
   end
 
@@ -189,9 +190,21 @@ class PeopleController < ApplicationController
     end
   end
 
-  private
+  protected
+
+  def flag
+     @flag ||= FeatureFlagger.new(current_user, @person)
+  end
+
+  def cant_experimental
+    params[:ex] && !flag.new_profile?
+  end
+
+  def needs_experimental
+    !params[:ex] && flag.new_profile? && flag.new_hotness? && request.format == "text/html"
+  end
 
   def remote_profile_with_no_user_session?
-    @person && @person.remote? && !user_signed_in?
+    @person.try(:remote?) && !user_signed_in?
   end
 end

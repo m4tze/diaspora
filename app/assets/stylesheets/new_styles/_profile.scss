@@ -1,3 +1,26 @@
+#profile {
+  min-height : 100%;
+
+  color : #fff;
+  background : {
+    color : #333;
+
+    /* The background-image property will be user-generated and set in `app.pages.Profile` (app/assets/javascripts/app/pages/profile.js)
+       and should ONLY be set once the image is fully loaded.
+
+       Optimal imagemagick manipulation settings for uploaded image (via trial & error):
+
+       `mogrify -brightness-contrast -40x-50`
+
+       NOTE: I noticed that just turning the brightness down had an adverse affect on contrast,
+       thus the "washing out" at -50 contrast.  For more info on this specific command, read the documentation
+       on it here: http://www.imagemagick.org/script/command-line-options.php#brightness-contrast */
+
+    size : cover;
+    attachment : fixed;
+  }
+}
+
 /* getting started pulse animation */
 #composer-button.pulse {
   -webkit-animation: opacity-pulse 1s infinite;
@@ -30,31 +53,84 @@
 
   height : 140px;
   width : 140px;
-  background-position : center;
+  background : {
+    position : center;
+    image : image-url('user/default.png');
+  }
 
   display : inline-block;
 
   margin-bottom : 5px;
+
+  &.small {
+    height : 40px;
+    width : 40px;
+    border : 2px solid #fff;
+  }
+
+  &.smaller {
+    height : 34px;
+    width : 34px;
+    border : 2px solid #ccc;
+  }
+
+  &.micro {
+    height : 24px;
+    width : 24px;
+    border : 2px solid #fff;
+  }
 }
 
 #profile-controls {
   text-align : right;
-  padding : 10px 12px;
+  padding : 10px 16px;
 
   /* when our buttons aren't there, we still want to maintain a persistent height */
   min-height : 40px;
 
   .control {
     @include transition(opacity);
-    @include opacity(0.4);
+    @include opacity(0.6);
+    @include border-radius(3px);
+    @include box-shadow(0, 1px, 2px, rgba(0,0,0,0.8));
 
-    &.small img {
-      height : 40px;
-      width : 40px;
+    font-family : Roboto-Bold;
+    color : #ccc;
+
+    position : relative;
+    top : 11px;
+
+    background-color : #000;
+    border : 1px solid #666;
+
+    padding : 10px;
+    padding-top : 10px;
+    margin-left : 8px;
+
+    &#composer-button {
+      position : relative;
+      font-size : 14px;
+      line-height : 14px;
+      padding-bottom : 8px;
+      padding-top : 9px;
+      padding-right : 8px;
+    }
+
+    &#edit-mode-toggle {
+      top : 10px;
+      padding-bottom : 10px;
+      img {
+        margin-top : -5px;
+      }
+    }
+
+    img {
+      height : 16px;
     }
 
     &:hover {
       @include opacity(1);
+      background-color : #000;
       text-decoration : none;
     }
 
@@ -139,5 +215,31 @@
     display : inline-block;
     width : $two-column-width + px;
     text-align : center;
+  }
+}
+
+/* responsive */
+@media (max-width: 767px) {
+  #profile {
+    background-size : 767px;
+  }
+
+  .profile-image-container {
+    height : 100px;
+    width : 100px;
+    border-width : 2px;
+  }
+
+  #profile-controls {
+    display : none;
+  }
+
+  #profile-header {
+    padding : 20px;
+  }
+
+  #wallpaper-upload,
+  .edit-control {
+    display : none;
   }
 }
