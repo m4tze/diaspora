@@ -4,11 +4,11 @@
 
 
 - content_for :page_title do
-  Diaspora*
+  = pod_name
 
 - begin
   = render :partial => 'home/show'
 
 - rescue
   :erb
-    <%= File.open(File.join(Rails.root, 'public/default.html')).read %>
+    <%= File.open(Rails.root.join('public', 'default.html')).read %>

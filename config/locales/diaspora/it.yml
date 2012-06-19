@@ -51,7 +51,32 @@ it:
     correlations:
       correlations_count: "Correlazioni con il numero di login"
     stats:
+      2weeks: "2 settimane"
+      50_most: "I 50 tag più popolari"
+      comments:
+        one: "%{count} commento"
+        other: "%{count} commenti"
+        zero: "%{count} commenti"
+      current_segment: "L'intervallo attuale ha una media di <b>%{post_yest}</b> post per utente, dal <b>%{post_day}</b>"
+      daily: "1 giorno"
+      display_results: "Risultati sull'intervallo di <b>%{segment}</b>"
       go: "vai"
+      month: "1 mese"
+      posts:
+        one: "%{count} post"
+        other: "%{count} post"
+        zero: "%{count} post"
+      shares:
+        one: "%{count} condivisione"
+        other: "%{count} condivisioni"
+        zero: "%{count} condivisioni"
+      tag_name: "Tag: <b>%{name_tag}</b> Usato: <b>%{count_tag} volte</b>"
+      usage_statistic: "Statistiche d'uso"
+      users:
+        one: "%{count} utente"
+        other: "%{count} utenti"
+        zero: "%{count} utenti"
+      week: "1 settimana"
     user_search:
       add_invites: "aggiungi inviti"
       email_to: "Email da invitare"
@@ -87,6 +112,7 @@ it:
       edit_aspect: "Modifica %{name}"
       select_all: "Seleziona tutti"
     aspect_stream:
+      make_something: "Crea qualcosa"
       stay_updated: "Segui lo stream"
       stay_updated_explanation: "Lo stream è popolato da tutti i tuoi contatti, dai tag che segui e dai post dei membri più creativi della comunità."
     contacts_not_visible: "I contatti in questo aspetto non potranno vedersi tra loro."
@@ -127,6 +153,7 @@ it:
       help:
         do_you: "Vuoi..."
         email_feedback: "Se preferisci, manda un feedback a %{link}"
+        email_link: "Email"
         feature_suggestion: "...proporre un'%{link}?"
         find_a_bug: "...segnalare un %{link}?"
         have_a_question: "...fare una %{link}?"
@@ -466,7 +493,7 @@ it:
     confirm_email:
       click_link: "Per attivare la nuova email %{unconfirmed_email} vai a questo indirizzo:"
       subject: "Per favore attiva il tuo nuovo indirizzo email %{unconfirmed_email}"
-    email_sent_by_diaspora: "Questo messaggio è stato spedito da Diaspora. Se non vuoi ricevere questo tipo di email,"
+    email_sent_by_diaspora: "Questo messaggio è stato spedito da %{pod_name}. Se non vuoi ricevere questo tipo di email,"
     hello: "Ciao %{name}!"
     invite:
       message: |-
@@ -780,6 +807,7 @@ it:
       invite_your_friends: "Invita i tuoi amici"
       invites: "Inviti"
       invites_closed: "Al momento non è permesso spedire inviti per questo pod Diaspora."
+      share_this: "Condividi questo link tramite email, blog, o su altri social network!"
     notification:
       new: "Nuovo %{type} da %{from}"
     public_explain:

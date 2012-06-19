@@ -3,7 +3,7 @@
 #   the COPYRIGHT file.
 
 require 'spec_helper'
-require File.join(Rails.root, 'spec', 'shared_behaviors', 'stream')
+require Rails.root.join('spec', 'shared_behaviors', 'stream')
 
 describe Stream::Tag do
   context 'with a user' do
@@ -81,7 +81,7 @@ describe Stream::Tag do
 
     it 'returns posts regardless of the tag case' do
       stream = Stream::Tag.new(nil, "newhere")
-      stream.posts.should == [@post_lc, @post_uc, @post_cp]
+      stream.posts.should =~ [@post_lc, @post_uc, @post_cp]
     end
   end
 

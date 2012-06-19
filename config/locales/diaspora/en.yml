@@ -79,6 +79,8 @@ en:
     helper:
       invalid_fields: "Invalid Fields"
       correct_the_following_errors_and_try_again: "Correct the following errors and try again."
+    post_not_public: "The post you are trying to view is not public!"
+    login_try_again: "Please <a href='%{login_link}'>login</a> and try again."
 
   admins:
     admin_bar:
@@ -262,6 +264,7 @@ en:
     aspect_stream:
       stay_updated: "Stay Updated"
       stay_updated_explanation: "Your main stream is populated with all of your contacts, tags you follow, and posts from some creative members of the community."
+      make_something: "Make something"
 
   aspect_memberships:
     destroy:
@@ -548,7 +551,7 @@ en:
 
   notifier:
     a_post_you_shared: "a post."
-    email_sent_by_diaspora: "This email was sent by Diaspora.  If you'd like to stop getting emails like this,"
+    email_sent_by_diaspora: "This email was sent by %{pod_name}. If you'd like to stop getting emails like this,"
     click_here: "click here"
     hello: "Hello %{name}!"
     thanks: "Thanks,"
@@ -825,7 +828,7 @@ en:
       join_me_on_diaspora: "Join me on DIASPORA*"
       click_link_to_accept_invitation: "Follow this link to accept your invitation"
     finder:
-      fetching_contacts: "Diaspora is populating your %{service} friends please check back in a few minutes."
+      fetching_contacts: "Diaspora is populating your %{service} friends, please check back in a few minutes."
       service_friends: "%{service} Friends"
       no_friends: "No Facebook friends found."
     remote_friend:
@@ -864,7 +867,7 @@ en:
       publishing_to: "publishing to: "
       discard_post: "Discard post"
       new_user_prefill:
-        newhere: "newhere"
+        newhere: "NewHere"
         hello: "Hey everyone, I'm #%{new_user_tag}. "
         i_like: "I'm interested in %{tags}. "
         invited_by: "Thanks for the invite, "
