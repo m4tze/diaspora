@@ -50,6 +50,33 @@ pt-BR:
       weekly_user_stats: "Estatísticas Semanais"
     correlations:
       correlations_count: "Contas similares:"
+    stats:
+      2weeks: "2 semanas"
+      50_most: "50 etiquetas mais populares"
+      comments:
+        one: "%{count} comentário"
+        other: "%{count} comentários"
+        zero: "%{count} comentário"
+      current_segment: "O período atual tem em média <b>%{post_yest}</b> publicações por usuário, de  <b>%{post_day}</b>"
+      daily: "Diaramente"
+      display_results: "Mostrando resultados do período <b>%{segment}</b>"
+      go: "Ir"
+      month: "Mês"
+      posts:
+        one: "%{count} publicação"
+        other: "%{count} publicações"
+        zero: "%{count} publicação"
+      shares:
+        one: "%{count} compartilhamento"
+        other: "%{count} compartilhamentos"
+        zero: "%{count} compartilhamento"
+      tag_name: "Nome da etiqueta: <b>%{name_tag}</b> Contagem: <b>%{count_tag}</b>"
+      usage_statistic: "Estatísticas de uso"
+      users:
+        one: "%{count} usuário"
+        other: "%{count} usuários"
+        zero: "%{count} usuário"
+      week: "semana"
     user_search:
       add_invites: "enviar convites"
       email_to: "Email para convite"
@@ -57,7 +84,13 @@ pt-BR:
         one: "%{count} usuários encontrados"
         other: "%{count} usuários encontrados"
         zero: "%{count} usuário encontrado."
-      you_currently: "você tem atualmente %{user_invitation} convites para enviar %{link}"
+      you_currently: "você atualmente tem %{user_invitation} convites para enviar %{link}"
+    weekly_user_stats:
+      amount_of:
+        one: "Quantidade de novos usuários esta semana: %{count}"
+        other: "Quantidade de novos usuários esta semana: %{count}"
+        zero: "Quantidade de novos usuários esta semana: Nenhum"
+      current_server: "Data atual do servidor é %{date}"
   ago: "%{time} atrás"
   all_aspects: "Todos os Grupos"
   application:
@@ -85,6 +118,7 @@ pt-BR:
       edit_aspect: "Editar %{name}"
       select_all: "Selecionar tudo"
     aspect_stream:
+      make_something: "Faça algo"
       stay_updated: "Fique Atualizado"
       stay_updated_explanation: "Seu fluxo é preenchido com todos os seus contatos, tags que você segue e as mensagens de alguns membros criativos da comunidade."
     contacts_not_visible: "Contatos neste grupo não podem ver uns aos outros."
@@ -125,6 +159,7 @@ pt-BR:
       help:
         do_you: "Você:"
         email_feedback: "%{link} seu feedback, se você preferir"
+        email_link: "E-mail"
         feature_suggestion: "... tem uma sugestão de %{link}?"
         find_a_bug: "... encontrar um %{link}?"
         have_a_question: "... Tem um %{link}?"
@@ -149,7 +184,7 @@ pt-BR:
         content: "Você pode conectar e seguir estes serviços no Diaspora:"
         heading: "Conectar Serviços"
       unfollow_tag: "Parar de seguir #%{tag}"
-      welcome_to_diaspora: "Bem vindo ao Diaspora, %{name}!"
+      welcome_to_diaspora: "Bem-vindo(a) ao Diaspora, %{name}!"
     many: "%{count} grupos"
     move_contact:
       error: "Não foi possível mover o contato: %{inspect}"
@@ -289,6 +324,8 @@ pt-BR:
     helper:
       correct_the_following_errors_and_try_again: "Corrija os erros a seguir e tente novamente."
       invalid_fields: "Campos inválidos"
+    login_try_again: "Por favor  faça<a href='%{login_link}'>login</a> e tente de novo."
+    post_not_public: "A publicação que está tentando visualizar não é pública!"
   fill_me_out: "Preencha"
   find_people: "Procurar pessoas"
   hide: "Ocultar"
@@ -331,6 +368,7 @@ pt-BR:
       back_to_top: "Voltar ao topo"
       powered_by: "PRODUZIDO POR DIASPORA*"
       public_feed: "Feed público de Diaspora para %{name}"
+      source_package: "baixar o pacote do código-fonte"
       toggle: "Versão para celular"
       whats_new: "O que há de novo?"
       your_aspects: "Seus grupos"
@@ -677,13 +715,20 @@ pt-BR:
       update: "Atualizar"
     invalid_invite: "O link com o convite não é mais válido."
     new:
+      continue: "Continue"
       create_my_account: "Criar minha conta!"
+      diaspora: "<3 Diaspora*"
+      email: "E-MAIL"
       enter_email: "Digite teu email"
       enter_password: "Digite tua senha"
       enter_password_again: "Digite novamente a tua senha"
       enter_username: "Escolha um nome de usuário (use somente letras, números e sublinhados)"
+      hey_make: "HEY,<br/>FAÇA<br/>ALGO."
       join_the_movement: "Junte-se ao movimento!"
+      password: "SENHA"
+      sign_up: "INSCREVER"
       sign_up_message: "Rede social com um <3"
+      username: "APELIDO"
   requests:
     create:
       sending: "Enviando"
@@ -785,6 +830,7 @@ pt-BR:
       invite_your_friends: "Convide seus amigos"
       invites: "Convites"
       invites_closed: "Os convites estão temporariamente desativados em Diaspora."
+      share_this: "Compartilhe este link via email, blog, ou rede social favorita!"
     notification:
       new: "Novo %{type} de %{from}"
     public_explain:
@@ -1008,7 +1054,7 @@ pt-BR:
     no_person_constructed: "Não foi possível construir uma pessoa a partir deste hcard."
     not_enabled: "O webfinger parece não estar habilitado para o servidor %{account}"
     xrd_fetch_failed: "Ocorreu um problema ao obter o xrd da conta %{account}"
-  welcome: "Bem vindo!"
+  welcome: "Bem-vindo(a)!"
   will_paginate:
-    next_label: "Próximo &raquo;"
-    previous_label: "&laquo; Anterior"
+    next_label: "próximo &raquo;"
+    previous_label: "&laquo; anterior"

@@ -13,8 +13,16 @@ def receive(post, opts)
   zord.perform!
 end
 
+def receive_public(post, opts)
+  sender = opts.fetch(:from)
+  salmon_xml = Salmon::Slap.create_by_user_and_activity(sender, post.to_diaspora_xml).xml_for(nil)
+  post.destroy
+  zord = Postzord::Receiver::Public.new(salmon_xml)
+  zord.perform!
+end
+
 def temporary_user(&block)
-  user = Factory(:user)
+  user = FactoryGirl.create(:user)
   block_return_value = yield user
   user.delete
   block_return_value
@@ -27,11 +35,14 @@ def temporary_post(user, &block)
   block_return_value
 end
 
-def expect_error(partial_message, &block)
+def expect_error(partial_message, &block)# DOES NOT REQUIRE ERROR!!
   begin 
     yield
   rescue => e
     e.message.should match partial_message
+
+  ensure
+    raise "no error occured where expected" unless e.present?
   end
 end
 
@@ -77,7 +88,7 @@ describe "attack vectors" do
           expect_error /Contact required/ do
             zord.perform!
           end
-        }.should_not change(Post, :count)
+        }.to_not change(Post, :count)
 
         user_should_not_see_guid(bob, bad_post_guid)
       end
@@ -117,7 +128,15 @@ describe "attack vectors" do
           expect_error /Author does not match XML author/ do
             receive(profile, :from => alice, :by => bob)
           end
-        }.should_not change(eve.profile, :first_name) 
+        }.to_not change(eve.profile, :first_name) 
+      end
+    end
+
+
+    it 'public stuff should not be spoofed from another author' do
+      post = FactoryGirl.build(:status_message, :public => true, :author => eve.person)
+      expect_error /Author does not match XML author/ do
+        receive_public(post, :from => alice)
       end
     end
   end
@@ -131,11 +150,11 @@ describe "attack vectors" do
         original_message = legit_post_from_user1_to_user2(eve, bob)
 
         #someone else tries to make a message with the same guid
-        malicious_message = Factory.build(:status_message, :id => original_message.id, :guid => original_message.guid, :author => alice.person)
+        malicious_message = FactoryGirl.build(:status_message, :id => original_message.id, :guid => original_message.guid, :author => alice.person)
 
         expect{
           receive(malicious_message, :from => alice, :by => bob)
-        }.should_not change(original_message, :author_id)
+        }.to_not change(original_message, :author_id)
       end
 
       it 'does not save a message over an old message with the same author' do
@@ -144,11 +163,11 @@ describe "attack vectors" do
         original_message = legit_post_from_user1_to_user2(eve, bob)
 
         #eve tries to send me another message with the same ID
-        malicious_message = Factory.build( :status_message, :id => original_message.id, :text => 'BAD!!!', :author => eve.person)
+        malicious_message = FactoryGirl.build( :status_message, :id => original_message.id, :text => 'BAD!!!', :author => eve.person)
 
         expect {
           receive(malicious_message, :from => eve, :by => bob)
-        }.should_not change(original_message, :text)
+        }.to_not change(original_message, :text)
       end
     end
 
@@ -164,7 +183,7 @@ describe "attack vectors" do
 
       expect {
         receive(ret, :from => alice, :by => bob)
-      }.should_not change(StatusMessage, :count)
+      }.to_not change(StatusMessage, :count)
     end
 
     it "silently disregards retractions for non-existent posts(that are from someone other than the post's author)" do
@@ -177,7 +196,7 @@ describe "attack vectors" do
                           end
        expect{
         receive(bogus_retraction, :from => alice, :by => bob)
-      }.should_not raise_error
+      }.to_not raise_error
     end
 
     it 'should not receive retractions where the retractor and the salmon author do not match' do
@@ -193,7 +212,7 @@ describe "attack vectors" do
         expect_error /Author does not match XML author/  do
           receive(retraction, :from => alice, :by => bob)
         end
-      }.should_not change(bob.visible_shareables(Post), :count)
+      }.to_not change(bob.visible_shareables(Post), :count)
 
     end
 
@@ -209,7 +228,7 @@ describe "attack vectors" do
 
       expect{
         receive(retraction, :from => alice, :by => bob)
-      }.should_not change{bob.reload.contacts.count}
+      }.to_not change{bob.reload.contacts.count}
     end
 
     it 'it should not allow you to send retractions with xml and salmon handle mismatch' do
@@ -223,7 +242,7 @@ describe "attack vectors" do
         expect_error /Author does not match XML author/ do
           receive(retraction, :from => alice, :by => bob)
         end
-        }.should_not change(bob.contacts, :count)
+        }.to_not change(bob.contacts, :count)
     end
 
     it 'does not let another user update other persons post' do
@@ -237,7 +256,7 @@ describe "attack vectors" do
 
       expect{
         receive(new_message, :from => alice, :by => bob)
-       }.should_not change(original_message, :text)
+       }.to_not change(original_message, :text)
     end
   end
 end

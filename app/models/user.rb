@@ -63,8 +63,9 @@ class User < ActiveRecord::Base
   before_save :guard_unconfirmed_email,
               :save_person!
 
-
-  attr_accessible :getting_started,
+  attr_accessible :username,
+                  :email,
+                  :getting_started,
                   :password,
                   :password_confirmation,
                   :language,
@@ -73,7 +74,8 @@ class User < ActiveRecord::Base
                   :invitation_identifier,
                   :show_community_spotlight_in_stream,
                   :auto_follow_back,
-                  :auto_follow_back_aspect_id
+                  :auto_follow_back_aspect_id,
+                  :remember_me
 
 
   def self.all_sharing_with_person(person)
@@ -102,10 +104,6 @@ class User < ActiveRecord::Base
 
   def unread_message_count
     ConversationVisibility.sum(:unread, :conditions => "person_id = #{self.person.id}")
-  end
-
-  def beta?
-    @beta ||= Role.is_beta?(self.person)
   end
 
   #@deprecated
@@ -187,7 +185,7 @@ class User < ActiveRecord::Base
   end
 
   def send_reset_password_instructions
-    generate_reset_password_token! if should_generate_token?
+    generate_reset_password_token! if should_generate_reset_token?
     Resque.enqueue(Jobs::ResetPassword, self.id)
   end
 
@@ -433,11 +431,6 @@ class User < ActiveRecord::Base
 
   def admin?
     Role.is_admin?(self.person)
-  end
-
-  def role_name
-    role = Role.find_by_person_id_and_name(self.person.id, 'beta')
-    role ? role.name : 'user'
   end
 
   def guard_unconfirmed_email

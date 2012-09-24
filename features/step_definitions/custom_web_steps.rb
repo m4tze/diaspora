@@ -12,6 +12,13 @@ Then /^the "([^"]*)" field should have a validation error$/ do |field|
   find_field(field).has_xpath?(".//ancestor::div[contains(@class, 'control-group')]/div[contains(@class, 'field_with_errors')]")
 end
 
+
+Then /^following field[s]? should have validation error[s]?:$/ do |fields|
+  fields.raw.each do |field|
+    step %{the "#{field[0]}" field should have a validation error}
+  end
+end
+
 And /^I expand the publisher$/ do
  click_publisher
 end
@@ -38,8 +45,9 @@ Then /^the publisher should be expanded$/ do
 end
 
 When /^I append "([^"]*)" to the publisher$/ do |stuff|
-  previous_value = page.find("#status_message_fake_text").value
-  fill_in "status_message_fake_text", :with => previous_value +  " " + stuff
+  elem = find('#status_message_fake_text')
+  elem.native.send_keys ' ' + stuff
+
   wait_until do
     page.find("#status_message_text").value.match(/#{stuff}/)
   end
