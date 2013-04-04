@@ -12,16 +12,6 @@ class StatusMessagesController < ApplicationController
              :json
 
   layout :bookmarklet_layout, :only => :bookmarklet
-  
-  # Define bookmarklet layout depending on whether
-  # user is in mobile or desktop mode
-  def bookmarklet_layout
-    if request.format == :mobile
-      'application'
-    else
-      'blank'
-    end
-  end
 
   # Called when a user clicks "Mention" on a profile page
   # @param person_id [Integer] The id of the person to be mentioned
@@ -70,7 +60,7 @@ class StatusMessagesController < ApplicationController
 
       current_user.participate!(@status_message)
 
-      if coming_from_profile_page? # if this is a post coming from a profile page
+      if coming_from_profile_page? && !own_profile_page? # if this is a post coming from a profile page
         flash[:notice] = successful_mention_message
       end
 
@@ -88,6 +78,8 @@ class StatusMessagesController < ApplicationController
     end
   end
 
+  private
+
   def destination_aspect_ids
     if params[:status_message][:public] || params[:status_message][:aspect_ids].first == "all_aspects"
       current_user.aspect_ids
@@ -104,6 +96,10 @@ class StatusMessagesController < ApplicationController
     request.env['HTTP_REFERER'].include?("people")
   end
 
+  def own_profile_page?
+    request.env['HTTP_REFERER'].include?("/people/" + params[:status_message][:author][:guid].to_s)
+  end
+
   def normalize_public_flag!
     # mobile || desktop conditions
     sm = params[:status_message]
@@ -115,5 +111,15 @@ class StatusMessagesController < ApplicationController
 
   def remove_getting_started
     current_user.disable_getting_started
+  end
+
+  # Define bookmarklet layout depending on whether
+  # user is in mobile or desktop mode
+  def bookmarklet_layout
+    if request.format == :mobile
+      'application'
+    else
+      'blank'
+    end
   end
 end

@@ -18,8 +18,8 @@ class User < ActiveRecord::Base
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :timeoutable, :token_authenticatable, :lockable,
-         :lock_strategy => :none, :unlock_strategy => :none
+         :token_authenticatable, :lockable, :lock_strategy => :none,
+         :unlock_strategy => :none
 
   before_validation :strip_and_downcase_username
   before_validation :set_current_language, :on => :create
@@ -165,17 +165,6 @@ class User < ActiveRecord::Base
     self.hidden_shareables[share_type].present?
   end
 
-
-  def self.create_from_invitation!(invitation)
-    user = User.new
-    user.generate_keys
-    user.send(:generate_invitation_token)
-    user.email = invitation.identifier if invitation.service == 'email'
-    # we need to make a custom validator here to make this safer
-    user.save(:validate => false)
-    user
-  end
-
   def send_reset_password_instructions
     generate_reset_password_token! if should_generate_reset_token?
     Resque.enqueue(Jobs::ResetPassword, self.id)
@@ -225,14 +214,6 @@ class User < ActiveRecord::Base
       conditions[:email] = conditions.delete(:username)
     end
     where(conditions).first
-  end
-
-  # @param [Person] person
-  # @return [Boolean] whether this user can add person as a contact.
-  def can_add?(person)
-    return false if self.person == person
-    return false if self.contact_for(person).present?
-    true
   end
 
   def confirm_email(token)
@@ -410,7 +391,7 @@ class User < ActiveRecord::Base
     self.aspects.create(:name => I18n.t('aspects.seed.work'))
     aq = self.aspects.create(:name => I18n.t('aspects.seed.acquaintances'))
 
-    unless AppConfig.settings.follow_diasporahq
+    if AppConfig.settings.follow_diasporahq?
       default_account = Webfinger.new('diasporahq@joindiaspora.com').fetch
       self.share_with(default_account, aq) if default_account
     end
@@ -424,6 +405,15 @@ class User < ActiveRecord::Base
   def admin?
     Role.is_admin?(self.person)
   end
+
+  def mine?(target)
+    if target.present? && target.respond_to?(:user_id)
+      return self.id == target.user_id
+    end
+
+    false
+  end
+
 
   def guard_unconfirmed_email
     self.unconfirmed_email = nil if unconfirmed_email.blank? || unconfirmed_email == email

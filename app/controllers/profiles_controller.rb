@@ -53,7 +53,7 @@ class ProfilesController < ApplicationController
 
     respond_to do |format|
       format.js { render :nothing => true, :status => 200 }
-      format.html {
+      format.any {
         flash[:notice] = I18n.t 'profiles.update.updated'
         if current_user.getting_started?
           redirect_to getting_started_path
@@ -64,7 +64,7 @@ class ProfilesController < ApplicationController
     end
   end
 
-  protected
+  private
 
   def munge_tag_string
     unless @profile_attrs[:tag_string].nil? || @profile_attrs[:tag_string] == I18n.t('profiles.edit.your_tags_placeholder')
